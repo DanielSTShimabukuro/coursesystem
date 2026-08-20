@@ -1,4 +1,4 @@
-package coursesystem.domain.entities;
+package coursesystem.domain.entities.user;
 
 public record User(String email,
                     String username,

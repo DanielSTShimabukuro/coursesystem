@@ -1,4 +1,4 @@
-package coursesystem.domain.entities;
+package coursesystem.domain.entities.course;
 
 import java.math.BigDecimal;
 
