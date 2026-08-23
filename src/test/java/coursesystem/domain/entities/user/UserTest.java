@@ -23,6 +23,14 @@ public class UserTest {
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithNullEmail() {
     IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new User(null, "Daniel", "Senha"));
+
+    assertEquals("Invalid Email.", ex.getMessage());
+  }
+
+  @Test
+  void shouldThrowExceptionWhenInstantiateUserWithBlankEmail() {
+    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new User("", "Daniel", "Senha"));
+
     assertEquals("Invalid Email.", ex.getMessage());
   }
 }
