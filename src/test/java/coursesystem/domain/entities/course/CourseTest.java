@@ -1,6 +1,7 @@
 package coursesystem.domain.entities.course;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.math.BigDecimal;
 
@@ -17,5 +18,12 @@ public class CourseTest {
     assertEquals(name, course.name());
     assertEquals(description, course.description());
     assertEquals(price, course.price());
+  }
+
+  @Test
+  void shouldThrowExceptionWhenInstantiateCourseWithNullName() {
+    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new Course(null, "Description", BigDecimal.TEN));
+
+    assertEquals("Invalid Name.", ex.getMessage());
   }
 }
