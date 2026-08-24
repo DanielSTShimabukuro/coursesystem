@@ -54,4 +54,11 @@ public class UserTest {
 
     assertEquals("Invalid Password.", ex.getMessage());
   }
+
+  @Test
+  void shouldThrowExceptionWhenInstantiateUserWithBlankPassword() {
+    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", "Daniel", ""));
+
+    assertEquals("Invalid Password.", ex.getMessage());
+  }
 }
