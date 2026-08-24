@@ -33,4 +33,11 @@ public class UserTest {
 
     assertEquals("Invalid Email.", ex.getMessage());
   }
+
+  @Test
+  void shouldThrowExceptionWhenInstantiateUserWithNullUsername() {
+    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", null, "Senha"));
+
+    assertEquals("Invalid Username.", ex.getMessage());
+  }
 }
