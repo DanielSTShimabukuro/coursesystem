@@ -11,8 +11,6 @@ public class UserTest {
     String email = "daniel.s.t.shimabukuro@gmail.com";
     String name = "Daniel";
     String password = "Senha";
-    
-
     User user = new User(email, name, password);
 
     assertEquals(email, user.email());
@@ -60,5 +58,5 @@ public class UserTest {
     IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", "Daniel", ""));
 
     assertEquals("Invalid Password.", ex.getMessage());
-  }
+  } 
 }
