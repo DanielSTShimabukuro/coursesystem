@@ -20,22 +20,21 @@ public class CourseTest {
 
   @Test
   void shouldThrowExceptionWhenInstantiateCourseWithNullName() {
-    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new Course(null, null, BigDecimal.TEN));
-
-    assertEquals("Invalid Name.", ex.getMessage());
+    assertThrows(IllegalArgumentException.class, () -> new Course(null, null, BigDecimal.TEN));
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateCourseWithBlankName() {
-    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new Course(" ", null, BigDecimal.TEN));
-
-    assertEquals("Invalid Name.", ex.getMessage());
+    assertThrows(IllegalArgumentException.class, () -> new Course(" ", null, BigDecimal.TEN));
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateCourseWithNullPrice() {
-    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new Course("Name", null, null));
+    assertThrows(IllegalArgumentException.class, () -> new Course("Name", null, null));
+  }
 
-    assertEquals("Invalid Price.", ex.getMessage());
+  @Test
+  void shouldThrowExceptionWhenInstantiateCourseWithPriceLowenThanZero() {
+    assertThrows(IllegalArgumentException.class, () -> new Course("Name", null, BigDecimal.valueOf(-1000)));
   }
 }

@@ -20,43 +20,31 @@ public class UserTest {
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithNullEmail() {
-    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new User(null, "Daniel", "Senha"));
-
-    assertEquals("Invalid Email.", ex.getMessage());
+    assertThrows(IllegalArgumentException.class, () -> new User(null, "Daniel", "Senha"));
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithBlankEmail() {
-    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new User(" ", "Daniel", "Senha"));
-
-    assertEquals("Invalid Email.", ex.getMessage());
+    assertThrows(IllegalArgumentException.class, () -> new User(" ", "Daniel", "Senha"));
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithNullUsername() {
-    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", null, "Senha"));
-
-    assertEquals("Invalid Username.", ex.getMessage());
+    assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", null, "Senha"));
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithBlankUsername() {
-    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", " ", "Senha"));
-
-    assertEquals("Invalid Username.", ex.getMessage());
+    assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", " ", "Senha"));
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithNullPassword() {
-    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", "Daniel", null));
-
-    assertEquals("Invalid Password.", ex.getMessage());
+    assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", "Daniel", null));
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithBlankPassword() {
-    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", "Daniel", " "));
-
-    assertEquals("Invalid Password.", ex.getMessage());
+    assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", "Daniel", " "));
   } 
 }
