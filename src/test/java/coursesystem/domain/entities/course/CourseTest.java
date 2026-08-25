@@ -11,26 +11,31 @@ public class CourseTest {
   @Test
   void shouldInstantiateCourseWithValidData() {
     String name = "Course";
-    String description = "Description";
     BigDecimal price = BigDecimal.TEN;
-    Course course = new Course(name, description, price);
+    Course course = new Course(name, null, price);
 
     assertEquals(name, course.name());
-    assertEquals(description, course.description());
     assertEquals(price, course.price());
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateCourseWithNullName() {
-    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new Course(null, "Description", BigDecimal.TEN));
+    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new Course(null, null, BigDecimal.TEN));
 
     assertEquals("Invalid Name.", ex.getMessage());
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateCourseWithBlankName() {
-    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new Course(" ", "Description", BigDecimal.TEN));
+    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new Course(" ", null, BigDecimal.TEN));
 
     assertEquals("Invalid Name.", ex.getMessage());
+  }
+
+  @Test
+  void shouldThrowExceptionWhenInstantiateCourseWithNullPrice() {
+    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new Course("Name", null, null));
+
+    assertEquals("Invalid Price.", ex.getMessage());
   }
 }
