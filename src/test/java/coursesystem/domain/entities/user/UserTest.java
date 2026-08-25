@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class UserTest {
+class UserTest {
   private static final String VALID_EMAIL = "daniel.s.t.shimabukuro@gmail.com";
   private static final String VALID_USERNAME = "Daniel";
   private static final String VALID_PASSWORD = "Senha";

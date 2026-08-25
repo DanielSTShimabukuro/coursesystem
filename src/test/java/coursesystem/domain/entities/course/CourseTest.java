@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Test;
 
-public class CourseTest {
+class CourseTest {
   private static final String VALID_NAME = "Course";
   private static final String VALID_DESCRIPTION = "Description";
   private static final BigDecimal VALID_PRICE = BigDecimal.TEN;
@@ -39,7 +39,7 @@ public class CourseTest {
   }
 
   @Test
-  void shouldThrowExceptionWhenInstantiateCourseWithPriceLowenThanZero() {
+  void shouldThrowExceptionWhenInstantiateCourseWithPriceLowerThanZero() {
     assertThrows(IllegalArgumentException.class, () -> new Course(VALID_NAME, null, BigDecimal.valueOf(-1000)));
   }
 }

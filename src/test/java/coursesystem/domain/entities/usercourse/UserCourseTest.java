@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class UserCourseTest {
+class UserCourseTest {
   private static final CourseStatus VALID_COURSE_STATUS = CourseStatus.COMPLETED;
   private static final CourseReaction VALID_COURSE_REACTION = CourseReaction.LIKE;
   private static final UserType VALID_USER_TYPE = UserType.OWNER;
@@ -23,5 +23,10 @@ public class UserCourseTest {
   @Test
   void shouldThrowExceptionWhenInstantiateUserCourseWithNullCourseStatus() {
     assertThrows(IllegalArgumentException.class, () -> new UserCourse(null, null, VALID_USER_TYPE));
+  }
+
+  @Test
+  void shouldThrowExceptionWhenInstantiateUserCourseWithNullUserType() {
+    assertThrows(IllegalArgumentException.class, () -> new UserCourse(VALID_COURSE_STATUS, null, null));
   }
 }
