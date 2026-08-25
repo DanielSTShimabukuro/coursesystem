@@ -27,7 +27,7 @@ public class UserTest {
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithBlankEmail() {
-    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new User("", "Daniel", "Senha"));
+    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new User(" ", "Daniel", "Senha"));
 
     assertEquals("Invalid Email.", ex.getMessage());
   }
@@ -41,7 +41,7 @@ public class UserTest {
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithBlankUsername() {
-    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", "", "Senha"));
+    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", " ", "Senha"));
 
     assertEquals("Invalid Username.", ex.getMessage());
   }
@@ -55,7 +55,7 @@ public class UserTest {
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithBlankPassword() {
-    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", "Daniel", ""));
+    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", "Daniel", " "));
 
     assertEquals("Invalid Password.", ex.getMessage());
   } 

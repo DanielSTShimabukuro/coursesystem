@@ -26,4 +26,11 @@ public class CourseTest {
 
     assertEquals("Invalid Name.", ex.getMessage());
   }
+
+  @Test
+  void shouldThrowExceptionWhenInstantiateCourseWithBlankName() {
+    IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> new Course(" ", "Description", BigDecimal.TEN));
+
+    assertEquals("Invalid Name.", ex.getMessage());
+  }
 }
