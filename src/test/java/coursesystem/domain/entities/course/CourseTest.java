@@ -1,5 +1,6 @@
 package coursesystem.domain.entities.course;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -10,12 +11,16 @@ import org.junit.jupiter.api.Test;
 public class CourseTest {
   @Test
   void shouldInstantiateCourseWithValidData() {
-    String name = "Course";
-    BigDecimal price = BigDecimal.TEN;
-    Course course = new Course(name, null, price);
+    final String name = "Course";
+    final String description = "Description";
+    final BigDecimal price = BigDecimal.TEN;
 
-    assertEquals(name, course.name());
-    assertEquals(price, course.price());
+    Course course = new Course(name, description, price);
+  
+    assertAll(
+      () -> assertEquals(name, course.name()),
+      () -> assertEquals(description, course.description()),
+      () -> assertEquals(price, course.price()));
   }
 
   @Test
