@@ -2,20 +2,26 @@ package coursesystem.domain.entities.usercourse;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 public class UserCourseTest {
+  private static final CourseStatus VALID_COURSE_STATUS = CourseStatus.COMPLETED;
+  private static final CourseReaction VALID_COURSE_REACTION = CourseReaction.LIKE;
+  private static final UserType VALID_USER_TYPE = UserType.OWNER;
+
   @Test
   void shouldInstantiateUserCourseWithValidData() {
-    final CourseStatus courseStatus = CourseStatus.COMPLETED;
-    final CourseReaction courseReaction = CourseReaction.LIKE;
-    final UserType userType = UserType.OWNER;
+    UserCourse userCourse = new UserCourse(VALID_COURSE_STATUS, VALID_COURSE_REACTION, VALID_USER_TYPE);
 
-    UserCourse userCourse = new UserCourse(courseStatus, courseReaction, userType);
+    assertAll(() -> assertEquals(VALID_COURSE_STATUS, userCourse.courseStatus()),
+              () -> assertEquals(VALID_COURSE_REACTION, userCourse.courseReaction()),
+              () -> assertEquals(VALID_USER_TYPE, userCourse.userType()));
+  }
 
-    assertAll(() -> assertEquals(courseStatus, userCourse.courseStatus()),
-              () -> assertEquals(courseReaction, userCourse.courseReaction()),
-              () -> assertEquals(userType, userCourse.userType()));
+  @Test
+  void shouldThrowExceptionWhenInstantiateUserCourseWithNullCourseStatus() {
+    assertThrows(IllegalArgumentException.class, () -> new UserCourse(null, null, VALID_USER_TYPE));
   }
 }

@@ -7,46 +7,46 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class UserTest {
+  private static final String VALID_EMAIL = "daniel.s.t.shimabukuro@gmail.com";
+  private static final String VALID_USERNAME = "Daniel";
+  private static final String VALID_PASSWORD = "Senha";
+
   @Test
   void shouldInstantiateUserWithValidData() {
-    final String email = "daniel.s.t.shimabukuro@gmail.com";
-    final String name = "Daniel";
-    final String password = "Senha";
+    User user = new User(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
 
-    User user = new User(email, name, password);
-
-    assertAll(() -> assertEquals(email, user.email()),
-              () -> assertEquals(name, user.username()),
-              () -> assertEquals(password, user.password()));
+    assertAll(() -> assertEquals(VALID_EMAIL, user.email()),
+              () -> assertEquals(VALID_USERNAME, user.username()),
+              () -> assertEquals(VALID_PASSWORD, user.password()));
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithNullEmail() {
-    assertThrows(IllegalArgumentException.class, () -> new User(null, "Daniel", "Senha"));
+    assertThrows(IllegalArgumentException.class, () -> new User(null, VALID_USERNAME, VALID_PASSWORD));
   }
 
   @Test
-  void shouldThrowExceptionWhenInstantiateUserWithBlankEmail() {
-    assertThrows(IllegalArgumentException.class, () -> new User(" ", "Daniel", "Senha"));
+  void shouldThrowExceptionWhenInstantiateUserWithInvalidEmail() {
+    assertThrows(IllegalArgumentException.class, () -> new User("Email", VALID_USERNAME, VALID_PASSWORD ));
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithNullUsername() {
-    assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", null, "Senha"));
+    assertThrows(IllegalArgumentException.class, () -> new User(VALID_EMAIL, null, VALID_PASSWORD));
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithBlankUsername() {
-    assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", " ", "Senha"));
+    assertThrows(IllegalArgumentException.class, () -> new User(VALID_EMAIL, " ", VALID_PASSWORD));
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithNullPassword() {
-    assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", "Daniel", null));
+    assertThrows(IllegalArgumentException.class, () -> new User(VALID_EMAIL, VALID_USERNAME, null));
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithBlankPassword() {
-    assertThrows(IllegalArgumentException.class, () -> new User("daniel.s.t.shimabukuro@gmail.com", "Daniel", " "));
+    assertThrows(IllegalArgumentException.class, () -> new User(VALID_EMAIL, VALID_USERNAME, " "));
   } 
 }
