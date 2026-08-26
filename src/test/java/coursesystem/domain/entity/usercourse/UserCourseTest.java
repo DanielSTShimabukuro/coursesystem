@@ -1,4 +1,4 @@
-package coursesystem.domain.entities.usercourse;
+package coursesystem.domain.entity.usercourse;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;

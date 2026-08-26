@@ -1,4 +1,4 @@
-package coursesystem.domain.entities.comment;
+package coursesystem.domain.entity.comment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

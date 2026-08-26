@@ -1,4 +1,4 @@
-package coursesystem.domain.entities.usercourse;
+package coursesystem.domain.entity.usercourse;
 
 public record UserCourse(CourseStatus courseStatus,
                           CourseReaction courseReaction,

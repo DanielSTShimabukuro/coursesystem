@@ -1,4 +1,4 @@
-package coursesystem.domain.entities.comment;
+package coursesystem.domain.entity.comment;
 
 public record Comment(String content) {
   public Comment {
