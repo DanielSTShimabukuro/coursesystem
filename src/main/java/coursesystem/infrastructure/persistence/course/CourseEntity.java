@@ -1,10 +1,10 @@
-package coursesystem.infrastructure.persistence.user;
+package coursesystem.infrastructure.persistence.course;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,41 +18,37 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "users")
-@Table(name = "users")
+@Entity(name = "courses")
+@Table(name = "courses")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(of = "id")
-public class UserEntity {
+public class CourseEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
 
   @Setter
-  @Column(nullable = false, length = 254, unique = true)
-  private String email;
+  @Column(nullable = false, length = 150)
+  private String name;
 
   @Setter
-  @Column(nullable = false, length = 50, unique =  true)
-  private String username;
+  @Column(length = 1000)
+  private String description;
 
   @Setter
-  @Column(nullable = false, length = 255)
-  private String password;
+  @Column(nullable = false, precision = 19, scale = 2)
+  private BigDecimal price;
 
   @Column(nullable = false, updatable = false)
   @CreationTimestamp
   private Instant createdAt;
 
-  @Column(nullable = false)
-  @UpdateTimestamp
-  private Instant updatedAt;
-
-  public UserEntity(String email,
-                    String username,
-                    String password) {
-    this.email = email;
-    this.username = username;
-    this.password = password;
+  public CourseEntity(String name,
+                      String description,
+                      BigDecimal price) {
+    this.name = name;
+    this.description = description;
+    this.price = price;
   }
 }
