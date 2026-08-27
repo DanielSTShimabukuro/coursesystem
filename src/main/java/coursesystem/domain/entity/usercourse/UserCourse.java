@@ -1,12 +1,12 @@
 package coursesystem.domain.entity.usercourse;
 
-public record UserCourse(CourseStatus courseStatus,
-                          CourseReaction courseReaction,
-                          UserType userType
+public record UserCourse(UserType userType,
+                          CourseStatus courseStatus,
+                          CourseReaction courseReaction
 ) {
   public UserCourse {
-    if (courseStatus == null) throw new IllegalArgumentException("Invalid CourseStatus.");
-
     if (userType == null) throw new IllegalArgumentException("Invalid UserType.");
+
+    if (courseStatus == null) throw new IllegalArgumentException("Invalid CourseStatus.");
   }
 }
