@@ -40,4 +40,11 @@ public class UserRepositoryTest {
     this.repository.saveAndFlush(user);
     assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user2));
   }
+
+  @Test
+  void shouldNotAllowNullUsernameInDatabase() {
+    UserEntity user = new UserEntity(VALID_EMAIL, null, VALID_PASSWORD);
+
+    assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user));
+  }
 }
