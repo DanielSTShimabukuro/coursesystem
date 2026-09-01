@@ -54,4 +54,14 @@ public class UserRepositoryTest {
 
     assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user));
   }
+
+  @Test
+  void shouldNotAllowDuplicateUsernameInDatabase() {
+    UserEntity user = new UserEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
+    UserEntity user2 = new UserEntity("email@gmail.com", VALID_USERNAME, "senha");
+
+    this.repository.saveAndFlush(user);
+
+    assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user2));
+  }
 }
