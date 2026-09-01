@@ -24,4 +24,11 @@ public class UserRepositoryTest {
 
     assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user));
   }
+
+  @Test
+  void shouldNotAllowEmailWithInvalidLengthInDatabase() {
+    UserEntity user = new UserEntity("a".repeat(255), VALID_USERNAME, VALID_PASSWORD);
+
+    assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user));
+  }
 }
