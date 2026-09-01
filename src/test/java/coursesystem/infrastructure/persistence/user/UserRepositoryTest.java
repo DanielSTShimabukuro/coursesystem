@@ -64,4 +64,11 @@ public class UserRepositoryTest {
 
     assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user2));
   }
+
+  @Test
+  void shouldNotAllowNullPasswordInDatabase() {
+    UserEntity user = new UserEntity(VALID_EMAIL, VALID_USERNAME, null);
+
+    assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user));
+  }
 }
