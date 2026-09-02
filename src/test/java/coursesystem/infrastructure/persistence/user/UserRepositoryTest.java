@@ -23,11 +23,11 @@ public class UserRepositoryTest {
   private static final String VALID_PASSWORD = "Senha";
 
   @Autowired
-  private UserRepository repository;
+  private UserJpaRepository repository;
 
   @Test
   void shouldPersistUserInDatabase() {
-    UserEntity user = new UserEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
+    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
     
     this.repository.saveAndFlush(user);
     assertAll(() -> assertNotNull(user.getId()),
@@ -40,7 +40,7 @@ public class UserRepositoryTest {
 
   @Test
   void shouldUpdateUserInDatabase() {
-    UserEntity user = new UserEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
+    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
 
     this.repository.saveAndFlush(user);
 
@@ -57,22 +57,22 @@ public class UserRepositoryTest {
 
   @Test
   void shouldNotAllowNullEmailInDatabase() {
-    UserEntity user = new UserEntity(null, VALID_USERNAME, VALID_PASSWORD);
+    UserJpaEntity user = new UserJpaEntity(null, VALID_USERNAME, VALID_PASSWORD);
 
     assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user));
   }
 
   @Test
   void shouldNotAllowEmailWithInvalidLengthInDatabase() {
-    UserEntity user = new UserEntity("a".repeat(255), VALID_USERNAME, VALID_PASSWORD);
+    UserJpaEntity user = new UserJpaEntity("a".repeat(255), VALID_USERNAME, VALID_PASSWORD);
 
     assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user));
   }
 
   @Test
   void shouldNotAllowDuplicateEmailInDatabase() {
-    UserEntity user = new UserEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
-    UserEntity user2 = new UserEntity(VALID_EMAIL, "DanielSTShimabukuro", "senha");
+    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
+    UserJpaEntity user2 = new UserJpaEntity(VALID_EMAIL, "DanielSTShimabukuro", "senha");
 
     this.repository.saveAndFlush(user);
     assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user2));
@@ -80,22 +80,22 @@ public class UserRepositoryTest {
 
   @Test
   void shouldNotAllowNullUsernameInDatabase() {
-    UserEntity user = new UserEntity(VALID_EMAIL, null, VALID_PASSWORD);
+    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, null, VALID_PASSWORD);
 
     assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user));
   }
 
   @Test
   void shouldNotAllowUsernameWithInvalidLengthInDatabase() {
-    UserEntity user = new UserEntity(VALID_EMAIL, "a".repeat(51), VALID_PASSWORD);
+    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, "a".repeat(51), VALID_PASSWORD);
 
     assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user));
   }
 
   @Test
   void shouldNotAllowDuplicateUsernameInDatabase() {
-    UserEntity user = new UserEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
-    UserEntity user2 = new UserEntity("email@gmail.com", VALID_USERNAME, "senha");
+    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
+    UserJpaEntity user2 = new UserJpaEntity("email@gmail.com", VALID_USERNAME, "senha");
 
     this.repository.saveAndFlush(user);
 
@@ -104,7 +104,7 @@ public class UserRepositoryTest {
 
   @Test
   void shouldNotAllowNullPasswordInDatabase() {
-    UserEntity user = new UserEntity(VALID_EMAIL, VALID_USERNAME, null);
+    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, VALID_USERNAME, null);
 
     assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user));
   }

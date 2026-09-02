@@ -8,8 +8,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import coursesystem.domain.entity.usercourse.CourseReaction;
 import coursesystem.domain.entity.usercourse.CourseStatus;
 import coursesystem.domain.entity.usercourse.UserType;
-import coursesystem.infrastructure.persistence.course.CourseEntity;
-import coursesystem.infrastructure.persistence.user.UserEntity;
+import coursesystem.infrastructure.persistence.course.CourseJpaEntity;
+import coursesystem.infrastructure.persistence.user.UserJpaEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -33,7 +33,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(of = "id")
-public class UserCourseEntity {
+public class UserCourseJpaEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
@@ -61,16 +61,16 @@ public class UserCourseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(nullable = false, name = "user_id", updatable = false)
-  private UserEntity user;
+  private UserJpaEntity user;
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(nullable = false, name = "course_id", updatable = false)
-  private CourseEntity course;
+  private CourseJpaEntity course;
 
-  public UserCourseEntity(UserType userType,
+  public UserCourseJpaEntity(UserType userType,
                           CourseStatus courseStatus,
-                          UserEntity user,
-                          CourseEntity course)
+                          UserJpaEntity user,
+                          CourseJpaEntity course)
   {
     this.userType = userType;
     this.courseStatus = courseStatus;

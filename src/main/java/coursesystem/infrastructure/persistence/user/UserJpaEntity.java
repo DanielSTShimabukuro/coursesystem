@@ -1,14 +1,14 @@
-package coursesystem.infrastructure.persistence.course;
+package coursesystem.infrastructure.persistence.user;
 
-import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import coursesystem.infrastructure.persistence.usercourse.UserCourseEntity;
+import coursesystem.infrastructure.persistence.usercourse.UserCourseJpaEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,12 +25,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "courses")
-@Table(name = "courses")
+@Entity(name = "users")
+@Table(name = "users")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(of = "id")
-public class CourseEntity {
+public class UserJpaEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
@@ -39,29 +39,33 @@ public class CourseEntity {
   private Long version;
 
   @Setter
-  @Column(nullable = false, length = 150)
-  private String name;
+  @Column(nullable = false, length = 254, unique = true)
+  private String email;
 
   @Setter
-  @Column(length = 1000)
-  private String description;
+  @Column(nullable = false, length = 50, unique =  true)
+  private String username;
 
   @Setter
-  @Column(nullable = false, precision = 19, scale = 2)
-  private BigDecimal price;
+  @Column(nullable = false, length = 255)
+  private String password;
 
   @Column(nullable = false, updatable = false)
   @CreationTimestamp
   private Instant createdAt;
 
-  @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-  private Set<UserCourseEntity> usersCourses = new HashSet<>();
-  
-  public CourseEntity(String name,
-                      String description,
-                      BigDecimal price) {
-    this.name = name;
-    this.description = description;
-    this.price = price;
+  @Column(nullable = false)
+  @UpdateTimestamp
+  private Instant updatedAt;
+
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  private Set<UserCourseJpaEntity> usersCourses = new HashSet<>();
+
+  public UserJpaEntity(String email,
+                    String username,
+                    String password) {
+    this.email = email;
+    this.username = username;
+    this.password = password;
   }
 }
