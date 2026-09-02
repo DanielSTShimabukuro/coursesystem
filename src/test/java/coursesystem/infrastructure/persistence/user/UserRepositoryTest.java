@@ -1,6 +1,10 @@
 package coursesystem.infrastructure.persistence.user;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +21,19 @@ public class UserRepositoryTest {
 
   @Autowired
   private UserRepository repository;
+
+  @Test
+  void shouldPersistUserInDatabase() {
+    UserEntity user = new UserEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
+    
+    this.repository.saveAndFlush(user);
+    assertAll(() -> assertNotNull(user.getId()),
+              () -> assertEquals(0L, user.getVersion()),
+              () -> assertNotNull(user.getCreatedAt()),
+              () -> assertNotNull(user.getUpdatedAt()),
+              () -> assertEquals(user.getCreatedAt(), user.getUpdatedAt()),
+              () -> assertTrue(user.getUsersCourses().isEmpty()));
+  }
 
   @Test
   void shouldNotAllowNullEmailInDatabase() {
