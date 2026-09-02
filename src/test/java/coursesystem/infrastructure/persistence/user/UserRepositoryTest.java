@@ -2,9 +2,12 @@ package coursesystem.infrastructure.persistence.user;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.Instant;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +36,23 @@ public class UserRepositoryTest {
               () -> assertNotNull(user.getUpdatedAt()),
               () -> assertEquals(user.getCreatedAt(), user.getUpdatedAt()),
               () -> assertTrue(user.getUsersCourses().isEmpty()));
+  }
+
+  @Test
+  void shouldUpdateUserInDatabase() {
+    UserEntity user = new UserEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
+
+    this.repository.saveAndFlush(user);
+
+    Long versionBefore = user.getVersion();
+    Instant updatedAtBefore = user.getUpdatedAt();
+
+    user.setEmail("email@gmail.com");
+    this.repository.saveAndFlush(user);
+
+    assertAll(() -> assertTrue(user.getVersion() > versionBefore),
+              () -> assertNotEquals(VALID_EMAIL, user.getEmail()),
+              () -> assertTrue(user.getUpdatedAt().isAfter(updatedAtBefore)));
   }
 
   @Test
