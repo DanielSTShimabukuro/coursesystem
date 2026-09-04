@@ -10,7 +10,7 @@ public record User(UUID id,
                     String password,
                     Instant createdAt,
                     Instant updatedAt,
-                    Set<UUID> usersCoursesIds) {
+                    Set<UUID> userCourseIds) {
   public User {
     if (email == null || !email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9._]+\\.+[A-Za-z]{2,}$")) throw new IllegalArgumentException("Invalid Email.");
 
