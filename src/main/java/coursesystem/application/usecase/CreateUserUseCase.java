@@ -1,20 +1,20 @@
 package coursesystem.application.usecase;
 
-import coursesystem.application.dto.input.user.CreateUserInputDTO;
-import coursesystem.application.dto.mapper.UserDTOMapper;
-import coursesystem.application.dto.output.user.UserOutputDTO;
+import coursesystem.application.input.user.CreateUserInputDTO;
+import coursesystem.application.mapper.UserApplicationMapper;
+import coursesystem.application.output.user.UserOutputDTO;
 import coursesystem.domain.model.user.User;
 import coursesystem.domain.repository.UserRepository;
 
 public class CreateUserUseCase {
+  private final UserApplicationMapper mapper;
   private final UserRepository repository;
-  private final UserDTOMapper mapper;
 
-  public CreateUserUseCase(UserRepository repository,
-                            UserDTOMapper mapper
+  public CreateUserUseCase(UserApplicationMapper mapper,
+                            UserRepository repository
   ) {
-    this.repository = repository;
     this.mapper = mapper;
+    this.repository = repository;
   }
 
   public UserOutputDTO execute(CreateUserInputDTO input) {

@@ -1,4 +1,4 @@
-package coursesystem.application.dto.input.user;
+package coursesystem.application.input.user;
 
 public record CreateUserInputDTO(String email, 
                                   String username, 

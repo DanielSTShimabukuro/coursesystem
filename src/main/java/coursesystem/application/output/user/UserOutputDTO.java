@@ -1,4 +1,4 @@
-package coursesystem.application.dto.output.user;
+package coursesystem.application.output.user;
 
 import java.time.Instant;
 import java.util.Set;

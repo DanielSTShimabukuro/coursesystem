@@ -1,10 +1,10 @@
-package coursesystem.application.dto.mapper;
+package coursesystem.application.mapper;
 
-import coursesystem.application.dto.input.user.CreateUserInputDTO;
-import coursesystem.application.dto.output.user.UserOutputDTO;
+import coursesystem.application.input.user.CreateUserInputDTO;
+import coursesystem.application.output.user.UserOutputDTO;
 import coursesystem.domain.model.user.User;
 
-public class UserDTOMapper {
+public class UserApplicationMapper {
   public User toDomain(CreateUserInputDTO input) {
     return new User(input.email(), input.username(), input.password());
   }
