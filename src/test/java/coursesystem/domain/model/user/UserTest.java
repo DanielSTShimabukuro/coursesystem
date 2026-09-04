@@ -13,7 +13,7 @@ class UserTest {
 
   @Test
   void shouldInstantiateUserWithValidData() {
-    User user = this.buildUser(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
+    User user = new User(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
 
     assertAll(() -> assertEquals(VALID_EMAIL, user.email()),
               () -> assertEquals(VALID_USERNAME, user.username()),
@@ -22,41 +22,31 @@ class UserTest {
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithNullEmail() {
-    assertThrows(IllegalArgumentException.class, () -> this.buildUser(null, VALID_USERNAME, VALID_PASSWORD));
+    assertThrows(IllegalArgumentException.class, () -> new User(null, VALID_USERNAME, VALID_PASSWORD));
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithInvalidEmail() {
-    assertThrows(IllegalArgumentException.class, () -> this.buildUser("a".repeat(255), VALID_USERNAME, VALID_PASSWORD));
+    assertThrows(IllegalArgumentException.class, () -> new User("a".repeat(255), VALID_USERNAME, VALID_PASSWORD));
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithNullUsername() {
-    assertThrows(IllegalArgumentException.class, () -> this.buildUser(VALID_EMAIL, null, VALID_PASSWORD));
+    assertThrows(IllegalArgumentException.class, () -> new User(VALID_EMAIL, null, VALID_PASSWORD));
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithBlankUsername() {
-    assertThrows(IllegalArgumentException.class, () -> this.buildUser(VALID_EMAIL, " ", VALID_PASSWORD));
+    assertThrows(IllegalArgumentException.class, () -> new User(VALID_EMAIL, " ", VALID_PASSWORD));
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithNullPassword() {
-    assertThrows(IllegalArgumentException.class, () -> this.buildUser(VALID_EMAIL, VALID_USERNAME, null));
+    assertThrows(IllegalArgumentException.class, () -> new User(VALID_EMAIL, VALID_USERNAME, null));
   }
 
   @Test
   void shouldThrowExceptionWhenInstantiateUserWithBlankPassword() {
-    assertThrows(IllegalArgumentException.class, () -> this.buildUser(VALID_EMAIL, VALID_USERNAME, " "));
+    assertThrows(IllegalArgumentException.class, () -> new User(VALID_EMAIL, VALID_USERNAME, " "));
   } 
-
-  private User buildUser(String email, String username, String password) {
-    return new User(null,
-                    email, 
-                    username, 
-                    password, 
-                    null, 
-                    null, 
-                    null);
-  }
 }

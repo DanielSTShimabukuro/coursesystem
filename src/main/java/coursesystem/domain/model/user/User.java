@@ -18,4 +18,10 @@ public record User(UUID id,
 
     if (password == null || password.isBlank()) throw new IllegalArgumentException("Invalid Password.");
   }
+
+  public User(String email,
+              String username,
+              String password) {
+    this(null, email, username, password, null, null, null);
+  }
 }

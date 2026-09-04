@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import coursesystem.domain.model.user.User;
 import coursesystem.infrastructure.persistence.entity.UserJpaEntity;
 
-public class UserMapper {
+public class UserPersistenceMapper {
   public UserJpaEntity toEntity(User domainUser) {
     return new UserJpaEntity(domainUser.email(), domainUser.username(), domainUser.password());
   }
