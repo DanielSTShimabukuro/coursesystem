@@ -29,6 +29,11 @@ public class UserRepositoryImpl implements UserRepository {
   }
 
   @Override 
+  public boolean existsByUsername(String username) {
+    return this.jpaRepository.existsByUsername(username);
+  }
+
+  @Override 
   public Optional<User> findById(UUID id) {
     return this.jpaRepository.findById(id).map(user -> this.mapper.toDomain(user)); 
   }
