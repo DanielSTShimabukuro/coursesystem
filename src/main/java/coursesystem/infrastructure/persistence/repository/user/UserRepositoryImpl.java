@@ -29,6 +29,11 @@ public class UserRepositoryImpl implements UserRepository {
   }
 
   @Override 
+  public boolean existsByEmailAndIdNot(String email, UUID id) {
+    return this.jpaRepository.existsByEmailAndIdNot(email, id);
+  }
+
+  @Override 
   public boolean existsByUsername(String username) {
     return this.jpaRepository.existsByUsername(username);
   }
