@@ -1,5 +1,8 @@
 package coursesystem.infrastructure.persistence.repository.user;
 
+import java.util.Optional;
+import java.util.UUID;
+
 import coursesystem.domain.model.user.User;
 import coursesystem.domain.repository.UserRepository;
 import coursesystem.infrastructure.persistence.entity.UserJpaEntity;
@@ -8,8 +11,8 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class UserRepositoryImpl implements UserRepository {
-  private final UserJpaRepository jpaRepository;
   private final UserPersistenceMapper mapper;
+  private final UserJpaRepository jpaRepository;
 
   @Override
   public User save(User domainUser) {
@@ -18,5 +21,10 @@ public class UserRepositoryImpl implements UserRepository {
     this.jpaRepository.save(user);
 
     return this.mapper.toDomain(user);
+  }
+
+  @Override 
+  public Optional<User> findById(UUID id) {
+    return  this.jpaRepository.findById(id).map(user -> this.mapper.toDomain(user)); 
   }
 }
