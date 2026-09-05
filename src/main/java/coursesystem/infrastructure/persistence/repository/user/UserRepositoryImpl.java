@@ -23,8 +23,13 @@ public class UserRepositoryImpl implements UserRepository {
     return this.mapper.toDomain(user);
   }
 
+  @Override
+  public boolean existsByEmail(String email) {
+    return this.jpaRepository.existsByEmail(email);
+  }
+
   @Override 
   public Optional<User> findById(UUID id) {
-    return  this.jpaRepository.findById(id).map(user -> this.mapper.toDomain(user)); 
+    return this.jpaRepository.findById(id).map(user -> this.mapper.toDomain(user)); 
   }
 }
