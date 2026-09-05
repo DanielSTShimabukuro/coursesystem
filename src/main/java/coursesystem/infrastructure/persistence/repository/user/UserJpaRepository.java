@@ -8,4 +8,5 @@ import coursesystem.infrastructure.persistence.entity.UserJpaEntity;
 
 public interface UserJpaRepository extends JpaRepository<UserJpaEntity, UUID> {
   boolean existsByEmail(String email);
+  boolean existsByUsername(String username);
 }
