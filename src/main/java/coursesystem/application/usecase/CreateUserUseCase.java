@@ -22,7 +22,6 @@ public class CreateUserUseCase {
     User user = this.mapper.toDomain(input);
 
     this.validateUser(user);
-
     user = this.repository.save(user);
 
     return this.mapper.toOutput(user);
