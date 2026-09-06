@@ -3,6 +3,7 @@ package coursesystem.presentation.controller;
 import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import coursesystem.application.input.user.CreateUserInputDTO;
 import coursesystem.application.input.user.UpdateUserInputDTO;
 import coursesystem.application.output.user.UserOutputDTO;
 import coursesystem.application.usecase.CreateUserUseCase;
+import coursesystem.application.usecase.DeleteUserUseCase;
 import coursesystem.application.usecase.FindUserByIdUseCase;
 import coursesystem.application.usecase.UpdateUserUseCase;
 import coursesystem.presentation.mapper.UserPresentationMapper;
@@ -33,6 +35,7 @@ public class UserController {
   private final CreateUserUseCase createUserUseCase;
   private final FindUserByIdUseCase findUserByIdUseCase;
   private final UpdateUserUseCase updateUserUseCase;
+  private final DeleteUserUseCase deleteUserUseCase;
 
   @ResponseStatus(HttpStatus.CREATED) 
   @PostMapping
@@ -59,4 +62,10 @@ public class UserController {
 
     return this.mapper.toResponse(output);
   }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable UUID id) {
+      this.deleteUserUseCase.execute(id);
+    }
 }
