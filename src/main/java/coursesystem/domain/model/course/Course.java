@@ -2,13 +2,15 @@ package coursesystem.domain.model.course;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.Set;
 import java.util.UUID;
 
 public record Course(UUID id,
                       String name,
                       String description,
                       BigDecimal price,
-                      Instant createdAt) {
+                      Instant createdAt,
+                      Set<UUID> userCourseIds) {
   public Course {
     if (name == null || name.isBlank()) throw new IllegalArgumentException("Invalid Name.");
 
@@ -22,6 +24,7 @@ public record Course(UUID id,
           name,
           description,
           price,
+          null,
           null);
   }
 }
