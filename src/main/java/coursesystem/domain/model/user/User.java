@@ -26,6 +26,12 @@ public record User(UUID id,
   public User(String email,
               String username,
               String password) {
-    this(null, email, username, password, null, null, null);
+    this(null, 
+          email, 
+          username, 
+          password, 
+          null, 
+          null, 
+          null);
   }
 }
