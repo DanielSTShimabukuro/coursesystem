@@ -14,4 +14,6 @@ public interface UserRepository {
   boolean existsByUsernameAndIdNot(String username, UUID id);
 
   Optional<User> findById(UUID id);
+
+  void delete(User user);
 }
