@@ -6,7 +6,7 @@ import java.util.UUID;
 import coursesystem.domain.model.user.User;
 
 public interface UserRepository {
-  User save(User user);
+  User save(User domainUser);
 
   boolean existsByEmail(String email);
   boolean existsByEmailAndIdNot(String email, UUID id);
@@ -15,5 +15,5 @@ public interface UserRepository {
 
   Optional<User> findById(UUID id);
 
-  void delete(User user);
+  void delete(User domainUser);
 }

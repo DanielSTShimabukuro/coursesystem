@@ -47,4 +47,11 @@ public class UserRepositoryImpl implements UserRepository {
   public Optional<User> findById(UUID id) {
     return this.jpaRepository.findById(id).map(user -> this.mapper.toDomain(user)); 
   }
+
+  @Override 
+  public void delete(User domainUser) {
+    UserJpaEntity user = this.mapper.toEntity(domainUser);
+
+    this.jpaRepository.delete(user);
+  }
 }
