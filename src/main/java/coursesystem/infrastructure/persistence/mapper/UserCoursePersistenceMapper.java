@@ -13,4 +13,13 @@ public class UserCoursePersistenceMapper {
                                     user,
                                     course);
   }
+
+  public UserCourse toDomain(UserCourseJpaEntity userCourse) {
+    return new UserCourse(userCourse.getId(), 
+                          userCourse.getUserType(),
+                          userCourse.getCourseStatus(),
+                          userCourse.getCourseReaction(),
+                          userCourse.getUser().getId(),
+                          userCourse.getCourse().getId());
+  }
 }
