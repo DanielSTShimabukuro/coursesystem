@@ -4,10 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import coursesystem.application.mapper.UserApplicationMapper;
-import coursesystem.application.usecase.CreateUserUseCase;
-import coursesystem.application.usecase.DeleteUserUseCase;
-import coursesystem.application.usecase.FindUserByIdUseCase;
-import coursesystem.application.usecase.UpdateUserUseCase;
+import coursesystem.application.usecase.user.CreateUserUseCase;
+import coursesystem.application.usecase.user.DeleteUserUseCase;
+import coursesystem.application.usecase.user.FindUserByIdUseCase;
+import coursesystem.application.usecase.user.UpdateUserUseCase;
 import coursesystem.domain.repository.UserRepository;
 
 @Configuration

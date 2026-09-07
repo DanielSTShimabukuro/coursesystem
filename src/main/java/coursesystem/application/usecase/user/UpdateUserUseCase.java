@@ -1,4 +1,4 @@
-package coursesystem.application.usecase;
+package coursesystem.application.usecase.user;
 
 import java.util.UUID;
 

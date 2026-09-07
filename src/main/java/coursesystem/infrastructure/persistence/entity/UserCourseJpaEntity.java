@@ -66,12 +66,14 @@ public class UserCourseJpaEntity {
   private CourseJpaEntity course;
 
   public UserCourseJpaEntity(UserType userType,
-                          CourseStatus courseStatus,
-                          UserJpaEntity user,
-                          CourseJpaEntity course)
+                              CourseStatus courseStatus,
+                              CourseReaction courseReaction,
+                              UserJpaEntity user,
+                              CourseJpaEntity course)
   {
     this.userType = userType;
     this.courseStatus = courseStatus;
+    this.courseReaction = courseReaction;
     this.user = user;
     this.course = course;
   }

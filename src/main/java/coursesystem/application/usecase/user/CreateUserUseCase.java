@@ -1,4 +1,4 @@
-package coursesystem.application.usecase;
+package coursesystem.application.usecase.user;
 
 import coursesystem.application.exceptions.BusinessException;
 import coursesystem.application.input.user.CreateUserInputDTO;
