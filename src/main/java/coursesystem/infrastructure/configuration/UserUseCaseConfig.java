@@ -12,6 +12,11 @@ import coursesystem.domain.repository.UserRepository;
 
 @Configuration
 public class UserUseCaseConfig {
+  @Bean 
+  UserApplicationMapper userApplicationMapper() {
+    return new UserApplicationMapper();
+  }
+
   @Bean
   CreateUserUseCase createUserUseCase(UserApplicationMapper mapper, UserRepository repository) {
     return new CreateUserUseCase(mapper, repository);

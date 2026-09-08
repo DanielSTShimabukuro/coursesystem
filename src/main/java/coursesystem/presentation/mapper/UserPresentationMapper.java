@@ -1,5 +1,7 @@
 package coursesystem.presentation.mapper;
 
+import org.springframework.stereotype.Component;
+
 import coursesystem.application.input.user.CreateUserInputDTO;
 import coursesystem.application.input.user.UpdateUserInputDTO;
 import coursesystem.application.output.user.UserOutputDTO;
@@ -7,6 +9,7 @@ import coursesystem.presentation.request.user.CreateUserRequestDTO;
 import coursesystem.presentation.request.user.UpdateUserRequestDTO;
 import coursesystem.presentation.response.user.UserResponseDTO;
 
+@Component 
 public class UserPresentationMapper {
   public CreateUserInputDTO toInput(CreateUserRequestDTO request) {
     return new CreateUserInputDTO(request.email(), request.username(), request.password());

@@ -2,6 +2,8 @@ package coursesystem.infrastructure.persistence.repository.course;
 
 import java.util.UUID;
 
+import org.springframework.stereotype.Repository;
+
 import coursesystem.domain.model.course.Course;
 import coursesystem.domain.repository.CourseRepository;
 import coursesystem.infrastructure.persistence.entity.CourseJpaEntity;
@@ -11,6 +13,7 @@ import coursesystem.infrastructure.persistence.repository.user.UserJpaRepository
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor 
+@Repository 
 public class CourseRepositoryImpl implements CourseRepository {
   private final CoursePersistenceMapper mapper;
   private final UserJpaRepository userJpaRepository;

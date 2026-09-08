@@ -2,9 +2,12 @@ package coursesystem.infrastructure.persistence.mapper;
 
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Component;
+
 import coursesystem.domain.model.user.User;
 import coursesystem.infrastructure.persistence.entity.UserJpaEntity;
 
+@Component 
 public class UserPersistenceMapper {
   public UserJpaEntity toEntity(User domainUser) {
     return new UserJpaEntity(domainUser.email(), domainUser.username(), domainUser.password());
