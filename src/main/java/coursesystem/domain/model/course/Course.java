@@ -12,7 +12,12 @@ public record Course(UUID id,
                       Instant createdAt,
                       Set<UUID> userCourseIds) {
   public Course {
-    if (name == null || name.isBlank()) throw new IllegalArgumentException("Invalid Name.");
+    name = name == null ? null : name.trim();
+    description = description == null ? null : description.trim();
+
+    if (name == null  || name.length() > 150 || name.length() < 2) throw new IllegalArgumentException("Invalid Name.");
+
+    if (description != null && (description.length() > 1000 || description.length() < 10)) throw new IllegalArgumentException("Invalid Description.");
 
     if (price == null || price.compareTo(BigDecimal.ZERO) < 0) throw new IllegalArgumentException("Invalid Price.");
   }

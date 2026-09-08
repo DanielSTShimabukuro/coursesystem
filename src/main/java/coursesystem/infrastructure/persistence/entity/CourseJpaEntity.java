@@ -49,7 +49,7 @@ public class CourseJpaEntity {
   private String description;
 
   @Setter
-  @Column(nullable = false, precision = 19, scale = 2)
+  @Column(nullable = false, precision = 8, scale = 2)
   private BigDecimal price;
 
   @Column(nullable = false, updatable = false)

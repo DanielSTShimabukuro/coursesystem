@@ -23,12 +23,12 @@ public class CreateCourseUseCase {
     this.repository = repository;
   }
 
-  public CourseOutputDTO execute(UUID userId, CreateCourseInputDTO input) {
-    this.validateCourse(userId);
+  public CourseOutputDTO execute(CreateCourseInputDTO input) {
+    this.validateCourse(input.userId());
 
     Course course = this.mapper.toDomain(input);
 
-    course = this.repository.save(course, userId);
+    course = this.repository.save(course, input.userId());
 
     return this.mapper.toOutput(course);
   }

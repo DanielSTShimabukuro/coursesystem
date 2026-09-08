@@ -3,9 +3,9 @@ package coursesystem.application.input.course;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public record CreateCourseInputDTO(UUID userId,
-                                    String name,
+public record CreateCourseInputDTO(String name,
                                     String description,
-                                    BigDecimal price) {
+                                    BigDecimal price,
+                                    UUID userId) {
   
 }
