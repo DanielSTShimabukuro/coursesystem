@@ -75,6 +75,8 @@ public class UserCourseJpaEntity {
     this.courseStatus = courseStatus;
     this.courseReaction = courseReaction;
     this.user = user;
+    this.user.addUserCourse(this);
     this.course = course;
+    this.course.addUserCourse(this);
   }
 }

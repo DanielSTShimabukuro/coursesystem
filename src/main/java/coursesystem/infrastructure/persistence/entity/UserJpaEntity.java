@@ -67,4 +67,8 @@ public class UserJpaEntity {
     this.username = username;
     this.password = password;
   }
+
+  public void addUserCourse(UserCourseJpaEntity userCourse) {
+    this.usersCourses.add(userCourse);
+  }
 }

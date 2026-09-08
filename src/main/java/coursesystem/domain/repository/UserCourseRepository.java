@@ -1,7 +1,10 @@
 package coursesystem.domain.repository;
 
+import java.util.Set;
+import java.util.UUID;
+
 import coursesystem.domain.model.usercourse.UserCourse;
 
 public interface UserCourseRepository {
-  UserCourse save(UserCourse userCourse);
+  Set<UserCourse> findAllByUserId(UUID userId);
 }

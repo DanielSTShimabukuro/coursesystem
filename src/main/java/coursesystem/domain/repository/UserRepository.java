@@ -8,6 +8,7 @@ import coursesystem.domain.model.user.User;
 public interface UserRepository {
   User save(User domainUser);
 
+  boolean existsById(UUID id);
   boolean existsByEmail(String email);
   boolean existsByEmailAndIdNot(String email, UUID id);
   boolean existsByUsername(String username);

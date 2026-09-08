@@ -4,10 +4,11 @@ import java.util.stream.Collectors;
 
 import coursesystem.domain.model.course.Course;
 import coursesystem.infrastructure.persistence.entity.CourseJpaEntity;
+import coursesystem.infrastructure.persistence.entity.UserJpaEntity;
 
 public class CoursePersistenceMapper {
-  public CourseJpaEntity toEntity(Course domainCourse) {
-    return new CourseJpaEntity(domainCourse.name(), domainCourse.description(), domainCourse.price());
+  public CourseJpaEntity toEntity(Course domainCourse, UserJpaEntity user) {
+    return new CourseJpaEntity(domainCourse.name(), domainCourse.description(), domainCourse.price(), user);
   }
 
   public Course toDomain(CourseJpaEntity course) {

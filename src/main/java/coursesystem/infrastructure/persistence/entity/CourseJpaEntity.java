@@ -8,6 +8,9 @@ import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import coursesystem.domain.model.usercourse.CourseReaction;
+import coursesystem.domain.model.usercourse.CourseStatus;
+import coursesystem.domain.model.usercourse.UserType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -58,9 +61,17 @@ public class CourseJpaEntity {
   
   public CourseJpaEntity(String name,
                       String description,
-                      BigDecimal price) {
+                      BigDecimal price,
+                      UserJpaEntity user) {
+    UserCourseJpaEntity userCourse = new UserCourseJpaEntity(UserType.OWNER, CourseStatus.COMPLETED, CourseReaction.LIKE, user, this);                    
+
     this.name = name;
     this.description = description;
     this.price = price;
+    this.addUserCourse(userCourse);
+  }
+
+  public void addUserCourse(UserCourseJpaEntity userCourse) {
+    this.usersCourses.add(userCourse);
   }
 }
