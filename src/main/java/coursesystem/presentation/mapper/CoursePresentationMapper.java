@@ -18,7 +18,7 @@ public class CoursePresentationMapper {
   public CourseResponseDTO toResponse(CourseOutputDTO output) {
     return new CourseResponseDTO(output.id(), 
                                   output.name(), 
-                                  output.description(), 
+                                  output.description(),
                                   output.price(), 
                                   output.userCourseIds());
   }
