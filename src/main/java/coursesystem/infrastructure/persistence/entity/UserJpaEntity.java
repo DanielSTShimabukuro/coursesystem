@@ -75,12 +75,15 @@ import java.time.Instant;
     }
 
     public void credit(BigDecimal amount) {
-      if (amount == null || amount.signum() <= 0 || amount.precision() > 2 || amount.scale() > 2) throw new IllegalArgumentException("Amount Invalid.");
-
+      this.validateAmount(amount);
       this.balance = this.balance.add(amount);
     }
 
     public void addUserCourse(UserCourseJpaEntity userCourse) {
       this.usersCourses.add(userCourse);
+    }
+
+    private void validateAmount(BigDecimal amount) {
+      if (amount == null || amount.signum() <= 0 || amount.precision() > 8 || amount.scale() > 2) throw new IllegalArgumentException("Amount Invalid.");
     }
   }
