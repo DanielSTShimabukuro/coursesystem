@@ -25,7 +25,6 @@ public class UserPresentationMapper {
     return new CreditBalanceUserInputDTO(requestDTO.id(), requestDTO.amount());
   }
 
-
   public UserResponseDTO toResponse(UserOutputDTO output) {
     return new UserResponseDTO(output.id(),
                               output.email(),
