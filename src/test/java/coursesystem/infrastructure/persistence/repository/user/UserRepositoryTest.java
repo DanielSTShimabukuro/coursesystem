@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 
 import org.junit.jupiter.api.Test;
@@ -23,13 +24,14 @@ public class UserRepositoryTest {
   private static final String VALID_EMAIL = "daniel.s.t.shimabukuro@gmail.com";
   private static final String VALID_USERNAME = "Daniel";
   private static final String VALID_PASSWORD = "Senha";
+  private static final BigDecimal VALID_BALANCE = BigDecimal.ZERO;
 
   @Autowired
   private UserJpaRepository repository;
 
   @Test
   void shouldPersistUserInDatabase() {
-    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
+    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD, VALID_BALANCE);
     
     this.repository.saveAndFlush(user);
     assertAll(() -> assertNotNull(user.getId()),
@@ -42,7 +44,7 @@ public class UserRepositoryTest {
 
   @Test
   void shouldUpdateUserInDatabase() {
-    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
+    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD, VALID_BALANCE);
 
     this.repository.saveAndFlush(user);
 
@@ -59,22 +61,22 @@ public class UserRepositoryTest {
 
   @Test
   void shouldNotAllowNullEmailInDatabase() {
-    UserJpaEntity user = new UserJpaEntity(null, VALID_USERNAME, VALID_PASSWORD);
+    UserJpaEntity user = new UserJpaEntity(null, VALID_USERNAME, VALID_PASSWORD, VALID_BALANCE);
 
     assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user));
   }
 
   @Test
   void shouldNotAllowEmailWithInvalidLengthInDatabase() {
-    UserJpaEntity user = new UserJpaEntity("a".repeat(255), VALID_USERNAME, VALID_PASSWORD);
+    UserJpaEntity user = new UserJpaEntity("a".repeat(255), VALID_USERNAME, VALID_PASSWORD, VALID_BALANCE);
 
     assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user));
   }
 
   @Test
   void shouldNotAllowDuplicateEmailInDatabase() {
-    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
-    UserJpaEntity user2 = new UserJpaEntity(VALID_EMAIL, "DanielSTShimabukuro", "senha");
+    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD, VALID_BALANCE);
+    UserJpaEntity user2 = new UserJpaEntity(VALID_EMAIL, "DanielSTShimabukuro", "senha", BigDecimal.TEN);
 
     this.repository.saveAndFlush(user);
     assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user2));
@@ -82,22 +84,22 @@ public class UserRepositoryTest {
 
   @Test
   void shouldNotAllowNullUsernameInDatabase() {
-    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, null, VALID_PASSWORD);
+    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, null, VALID_PASSWORD, VALID_BALANCE);
 
     assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user));
   }
 
   @Test
   void shouldNotAllowUsernameWithInvalidLengthInDatabase() {
-    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, "a".repeat(51), VALID_PASSWORD);
+    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, "a".repeat(51), VALID_PASSWORD, VALID_BALANCE);
 
     assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user));
   }
 
   @Test
   void shouldNotAllowDuplicateUsernameInDatabase() {
-    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD);
-    UserJpaEntity user2 = new UserJpaEntity("email@gmail.com", VALID_USERNAME, "senha");
+    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, VALID_USERNAME, VALID_PASSWORD, VALID_BALANCE);
+    UserJpaEntity user2 = new UserJpaEntity("email@gmail.com", VALID_USERNAME, "senha", BigDecimal.TEN);
 
     this.repository.saveAndFlush(user);
 
@@ -106,7 +108,7 @@ public class UserRepositoryTest {
 
   @Test
   void shouldNotAllowNullPasswordInDatabase() {
-    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, VALID_USERNAME, null);
+    UserJpaEntity user = new UserJpaEntity(VALID_EMAIL, VALID_USERNAME, null, VALID_BALANCE);
 
     assertThrows(DataIntegrityViolationException.class, () -> this.repository.saveAndFlush(user));
   }

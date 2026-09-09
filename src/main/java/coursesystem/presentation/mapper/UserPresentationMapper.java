@@ -23,6 +23,7 @@ public class UserPresentationMapper {
     return new UserResponseDTO(output.id(),
                               output.email(),
                               output.username(),
+                              output.balance(),
                               output.createdAt(),
                               output.updatedAt(),
                               output.userCourseIds());

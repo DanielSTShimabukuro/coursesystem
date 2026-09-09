@@ -10,7 +10,7 @@ import coursesystem.infrastructure.persistence.entity.UserJpaEntity;
 @Component 
 public class UserPersistenceMapper {
   public UserJpaEntity toEntity(User domainUser) {
-    return new UserJpaEntity(domainUser.email(), domainUser.username(), domainUser.password());
+    return new UserJpaEntity(domainUser.email(), domainUser.username(), domainUser.password(), domainUser.balance());
   }
 
   public User toDomain(UserJpaEntity user) {
@@ -18,6 +18,7 @@ public class UserPersistenceMapper {
                     user.getEmail(), 
                     user.getUsername(), 
                     user.getPassword(), 
+                    user.getBalance(),
                     user.getCreatedAt(), 
                     user.getUpdatedAt(), 
                     user.getUsersCourses().stream().map(usercourse -> usercourse.getId()).collect(Collectors.toSet()));
