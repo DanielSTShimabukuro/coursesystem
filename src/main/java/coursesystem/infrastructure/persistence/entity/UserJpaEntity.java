@@ -79,6 +79,11 @@ import java.time.Instant;
       this.balance = this.balance.add(amount);
     }
 
+    public void debit(BigDecimal amount) {
+      this.validateAmount(amount);
+      this.balance = this.balance.subtract(amount);
+    }
+
     public void addUserCourse(UserCourseJpaEntity userCourse) {
       this.usersCourses.add(userCourse);
     }
