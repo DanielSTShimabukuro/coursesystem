@@ -1,6 +1,8 @@
 package coursesystem.domain.model.user;
 
+import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
@@ -9,6 +11,7 @@ public record User(UUID id,
                     String email,
                     String username,
                     String password,
+                    BigDecimal balance,
                     Instant createdAt,
                     Instant updatedAt,
                     Set<UUID> userCourseIds) {
@@ -21,6 +24,8 @@ public record User(UUID id,
     if (username == null || username.length() > 50 || username.length() < 3) throw new IllegalArgumentException("Invalid Username.");
 
     if (password == null || password.length() > 255 || password.length() < 8) throw new IllegalArgumentException("Invalid Password.");
+
+    if (balance == null || balance.signum() < 0 || balance.precision() > 8 || balance.scale() > 2) throw new IllegalArgumentException("Invalid Balance.");
   }
 
   public User(String email,
@@ -30,8 +35,9 @@ public record User(UUID id,
           email, 
           username, 
           password, 
+          BigDecimal.ZERO, 
           null, 
-          null, 
-          null);
+          null,
+          new HashSet<>());
   }
 }
