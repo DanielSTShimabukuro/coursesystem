@@ -11,8 +11,8 @@ import coursesystem.presentation.response.course.CourseResponseDTO;
 
 @Component 
 public class CoursePresentationMapper {
-  public CreateCourseInputDTO toInput(CreateCourseRequestDTO request, UUID userId) {
-    return new CreateCourseInputDTO(request.name(), request.description(), request.price(), userId);
+  public CreateCourseInputDTO toInput(CreateCourseRequestDTO request) {
+    return new CreateCourseInputDTO(request.name(), request.description(), request.price(), request.userId());
   }
 
   public CourseResponseDTO toResponse(CourseOutputDTO output) {
