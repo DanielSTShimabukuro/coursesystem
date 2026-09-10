@@ -29,6 +29,7 @@ import coursesystem.presentation.request.user.CreditBalanceUserRequestDTO;
 import coursesystem.presentation.request.user.UpdateUserRequestDTO;
 import coursesystem.presentation.response.user.UserResponseDTO;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -60,10 +61,10 @@ public class UserController {
   }
 
   @ResponseStatus(HttpStatus.OK)
-  @PutMapping("/{id}")
-  public UserResponseDTO updateUser(@PathVariable UUID id, @RequestBody @Valid UpdateUserRequestDTO request) {
+  @PutMapping
+  public UserResponseDTO updateUser(@RequestBody @Valid UpdateUserRequestDTO request) {
     UpdateUserInputDTO input = this.mapper.toInput(request);
-    UserOutputDTO output = this.updateUserUseCase.execute(id, input);
+    UserOutputDTO output = this.updateUserUseCase.execute(input);
 
     return this.mapper.toResponse(output);
   }
@@ -78,8 +79,8 @@ public class UserController {
   } 
 
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  @DeleteMapping("/{id}")
-  public void deleteUser(@PathVariable UUID id) {
+  @DeleteMapping
+  public void deleteUser(@RequestBody @NotNull UUID id) {
     this.deleteUserUseCase.execute(id);
   }
 }

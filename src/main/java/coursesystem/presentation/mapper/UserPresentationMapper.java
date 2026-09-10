@@ -18,7 +18,7 @@ public class UserPresentationMapper {
   }
 
   public UpdateUserInputDTO toInput(UpdateUserRequestDTO request) {
-    return new UpdateUserInputDTO(request.email(), request.username(), request.password());
+    return new UpdateUserInputDTO(request.id(), request.email(), request.username(), request.password());
   }
 
   public CreditBalanceUserInputDTO toInput(CreditBalanceUserRequestDTO requestDTO) {

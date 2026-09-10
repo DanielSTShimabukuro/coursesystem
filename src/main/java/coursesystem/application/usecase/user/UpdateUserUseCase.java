@@ -1,7 +1,5 @@
 package coursesystem.application.usecase.user;
 
-import java.util.UUID;
-
 import coursesystem.application.exceptions.BusinessException;
 import coursesystem.application.exceptions.NotFoundException;
 import coursesystem.application.input.user.UpdateUserInputDTO;
@@ -20,8 +18,8 @@ public class UpdateUserUseCase {
     this.repository = repository;
   }
 
-  public UserOutputDTO execute(UUID id, UpdateUserInputDTO input) {
-    User user = this.repository.findById(id).orElseThrow(() -> new NotFoundException("User Not Found."));
+  public UserOutputDTO execute(UpdateUserInputDTO input) {
+    User user = this.repository.findById(input.id()).orElseThrow(() -> new NotFoundException("User Not Found."));
 
     user = this.mapper.update(user, input);
     this.validateUser(user);

@@ -1,6 +1,9 @@
 package coursesystem.application.input.user;
 
-public record UpdateUserInputDTO(String email, 
+import java.util.UUID;
+
+public record UpdateUserInputDTO(UUID id,
+                                  String email, 
                                   String username, 
                                   String password) {
   
