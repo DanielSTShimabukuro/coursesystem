@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import coursesystem.application.mapper.CourseApplicationMapper;
 import coursesystem.application.usecase.course.CreateCourseUseCase;
-import coursesystem.application.usecase.course.FindByIdCourseUseCase;
+import coursesystem.application.usecase.course.FindCourseByIdUseCase;
 import coursesystem.domain.repository.CourseRepository;
 import coursesystem.domain.repository.UserRepository;
 
@@ -22,7 +22,7 @@ public class CourseUseCaseConfig {
   }
 
   @Bean 
-  FindByIdCourseUseCase findByIdCourseUseCase(CourseApplicationMapper mapper, CourseRepository repository) {
-    return new FindByIdCourseUseCase(mapper, repository);
+  FindCourseByIdUseCase findCourseByIdUseCase(CourseApplicationMapper mapper, CourseRepository repository) {
+    return new FindCourseByIdUseCase(mapper, repository);
   }
 }

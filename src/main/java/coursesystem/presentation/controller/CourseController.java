@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import coursesystem.application.input.course.CreateCourseInputDTO;
 import coursesystem.application.output.course.CourseOutputDTO;
 import coursesystem.application.usecase.course.CreateCourseUseCase;
-import coursesystem.application.usecase.course.FindByIdCourseUseCase;
+import coursesystem.application.usecase.course.FindCourseByIdUseCase;
 import coursesystem.presentation.mapper.CoursePresentationMapper;
 import coursesystem.presentation.request.course.CreateCourseRequestDTO;
 import coursesystem.presentation.response.course.CourseResponseDTO;
@@ -27,7 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class CourseController {
   private final CoursePresentationMapper mapper;
   private final CreateCourseUseCase createCourseUseCase;
-  private final FindByIdCourseUseCase findByIdCourseUseCase;
+  private final FindCourseByIdUseCase findByIdCourseUseCase;
 
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping 
@@ -40,7 +40,7 @@ public class CourseController {
 
   @ResponseStatus(HttpStatus.OK)
   @GetMapping("/{id}")
-  public CourseResponseDTO findUserById(@PathVariable UUID id) {
+  public CourseResponseDTO findCourseById(@PathVariable UUID id) {
     CourseOutputDTO output = this.findByIdCourseUseCase.execute(id);
 
     return this.mapper.toResponse(output);

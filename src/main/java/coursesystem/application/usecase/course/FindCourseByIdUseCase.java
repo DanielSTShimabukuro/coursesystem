@@ -8,11 +8,11 @@ import coursesystem.application.output.course.CourseOutputDTO;
 import coursesystem.domain.model.course.Course;
 import coursesystem.domain.repository.CourseRepository;
 
-public class FindByIdCourseUseCase {
+public class FindCourseByIdUseCase {
   private final CourseApplicationMapper mapper;
   private final CourseRepository repository;
 
-  public FindByIdCourseUseCase(CourseApplicationMapper mapper,
+  public FindCourseByIdUseCase(CourseApplicationMapper mapper,
                                 CourseRepository repository) {
     this.mapper = mapper;
     this.repository = repository;
