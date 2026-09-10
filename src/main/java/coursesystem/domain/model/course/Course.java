@@ -2,6 +2,7 @@ package coursesystem.domain.model.course;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -19,7 +20,7 @@ public record Course(UUID id,
 
     if (description != null && (description.length() > 1000 || description.length() < 10)) throw new IllegalArgumentException("Invalid Description.");
 
-    if (price == null || price.compareTo(BigDecimal.ZERO) < 0) throw new IllegalArgumentException("Invalid Price.");
+    if (price == null || price.signum() < 0 || price.precision() > 8 || price.scale() > 2) throw new IllegalArgumentException("Invalid Price.");
   }
 
   public Course(String name,
@@ -30,6 +31,6 @@ public record Course(UUID id,
           description,
           price,
           null,
-          null);
+          new HashSet<>());
   }
 }
