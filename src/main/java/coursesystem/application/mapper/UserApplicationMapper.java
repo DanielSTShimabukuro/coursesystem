@@ -2,6 +2,7 @@ package coursesystem.application.mapper;
 
 import coursesystem.application.input.user.CreateUserInputDTO;
 import coursesystem.application.input.user.CreditBalanceUserInputDTO;
+import coursesystem.application.input.user.DebitBalanceUserInputDTO;
 import coursesystem.application.input.user.UpdateUserInputDTO;
 import coursesystem.application.output.user.UserOutputDTO;
 import coursesystem.domain.model.user.User;
@@ -23,6 +24,17 @@ public class UserApplicationMapper {
   }
 
   public User update(User user, CreditBalanceUserInputDTO input) {
+    return new User(user.id(),
+                    user.email(), 
+                    user.username(), 
+                    user.password(),
+                    user.balance().add(input.amount()),
+                    user.createdAt(), 
+                    user.updatedAt(), 
+                    user.userCourseIds());
+  }
+
+  public User update(User user, DebitBalanceUserInputDTO input) {
     return new User(user.id(),
                     user.email(), 
                     user.username(), 
