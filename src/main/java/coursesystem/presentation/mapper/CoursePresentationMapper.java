@@ -1,7 +1,5 @@
 package coursesystem.presentation.mapper;
 
-import java.util.UUID;
-
 import org.springframework.stereotype.Component;
 
 import coursesystem.application.input.course.CreateCourseInputDTO;
