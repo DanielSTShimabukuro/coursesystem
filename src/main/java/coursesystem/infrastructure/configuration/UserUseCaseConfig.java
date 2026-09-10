@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import coursesystem.application.mapper.UserApplicationMapper;
-import coursesystem.application.usecase.user.CreaditBalanceUserUseCase;
+import coursesystem.application.usecase.user.CreditBalanceUserUseCase;
 import coursesystem.application.usecase.user.CreateUserUseCase;
 import coursesystem.application.usecase.user.DeleteUserUseCase;
 import coursesystem.application.usecase.user.FindUserByIdUseCase;
@@ -34,8 +34,8 @@ public class UserUseCaseConfig {
   }
 
   @Bean 
-  CreaditBalanceUserUseCase creaditBalanceUserUseCase(UserApplicationMapper mapper, UserRepository repository) {
-    return new CreaditBalanceUserUseCase(mapper, repository);
+  CreditBalanceUserUseCase creaditBalanceUserUseCase(UserApplicationMapper mapper, UserRepository repository) {
+    return new CreditBalanceUserUseCase(mapper, repository);
   }
 
   @Bean
