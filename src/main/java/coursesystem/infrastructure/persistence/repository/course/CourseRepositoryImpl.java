@@ -1,7 +1,9 @@
 package coursesystem.infrastructure.persistence.repository.course;
 
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
@@ -33,5 +35,10 @@ public class CourseRepositoryImpl implements CourseRepository {
   @Override 
   public Optional<Course> findById(UUID id) {
     return this.jpaRepository.findById(id).map(course -> this.mapper.toDomain(course));
+  }
+
+  @Override 
+  public Set<Course> findAll() {
+    return this.jpaRepository.findAll().stream().map(course -> this.mapper.toDomain(course)).collect(Collectors.toSet());
   }
 }
