@@ -1,6 +1,8 @@
 package coursesystem.presentation.controller;
 
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import coursesystem.application.input.course.CreateCourseInputDTO;
 import coursesystem.application.output.course.CourseOutputDTO;
 import coursesystem.application.usecase.course.CreateCourseUseCase;
+import coursesystem.application.usecase.course.FindAllCoursesUseCase;
 import coursesystem.application.usecase.course.FindCourseByIdUseCase;
 import coursesystem.presentation.mapper.CoursePresentationMapper;
 import coursesystem.presentation.request.course.CreateCourseRequestDTO;
@@ -27,6 +30,7 @@ import lombok.RequiredArgsConstructor;
 public class CourseController {
   private final CoursePresentationMapper mapper;
   private final CreateCourseUseCase createCourseUseCase;
+  private final FindAllCoursesUseCase findAllCoursesUseCase;
   private final FindCourseByIdUseCase findByIdCourseUseCase;
 
   @ResponseStatus(HttpStatus.CREATED)
@@ -36,6 +40,12 @@ public class CourseController {
     CourseOutputDTO output = this.createCourseUseCase.execute(input);
 
     return this.mapper.toResponse(output);
+  }
+
+  @ResponseStatus(HttpStatus.OK)
+  @GetMapping
+  public Set<CourseResponseDTO> findAllCourses() {
+    return this.findAllCoursesUseCase.execute().stream().map(output -> this.mapper.toResponse(output)).collect(Collectors.toSet());
   }
 
   @ResponseStatus(HttpStatus.OK)
