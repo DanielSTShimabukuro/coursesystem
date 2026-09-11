@@ -71,6 +71,14 @@ public class CourseJpaEntity {
     this.addUserCourse(userCourse);
   }
 
+  public CourseJpaEntity(String name,
+                      String description,
+                      BigDecimal price) {
+    this.name = name;
+    this.description = description;
+    this.price = price;
+  }
+
   public void addUserCourse(UserCourseJpaEntity userCourse) {
     this.usersCourses.add(userCourse);
   }

@@ -14,6 +14,10 @@ public class CoursePersistenceMapper {
     return new CourseJpaEntity(domainCourse.name(), domainCourse.description(), domainCourse.price(), user);
   }
 
+  public CourseJpaEntity toEntity(Course domainCourse) {
+    return new CourseJpaEntity(domainCourse.name(), domainCourse.description(), domainCourse.price());
+  }
+
   public Course toDomain(CourseJpaEntity course) {
     return new Course(course.getId(),
                       course.getName(),
