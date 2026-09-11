@@ -8,6 +8,7 @@ import coursesystem.domain.model.course.Course;
 
 public interface CourseRepository {
   Course save(Course domainCourse, UUID userId);
+  Course save(Course domainCourse);
 
   Optional<Course> findById(UUID id);
 
