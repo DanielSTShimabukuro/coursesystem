@@ -33,6 +33,15 @@ public class CourseRepositoryImpl implements CourseRepository {
   }
 
   @Override 
+  public Course save(Course domainCourse) {
+    CourseJpaEntity course = this.mapper.toEntity(domainCourse);
+
+    this.jpaRepository.save(course);
+
+    return this.mapper.toDomain(course);
+  }
+
+  @Override 
   public Optional<Course> findById(UUID id) {
     return this.jpaRepository.findById(id).map(course -> this.mapper.toDomain(course));
   }
