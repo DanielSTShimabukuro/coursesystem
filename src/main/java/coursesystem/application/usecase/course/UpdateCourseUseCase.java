@@ -1,6 +1,7 @@
 package coursesystem.application.usecase.course;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import coursesystem.application.exceptions.BusinessException;
 import coursesystem.application.exceptions.NotFoundException;
@@ -26,18 +27,18 @@ public class UpdateCourseUseCase {
     this.repository = repository;
   }
 
-  public CourseOutputDTO execute(UpdateCourseInputDTO input) {
-    Course course = this.repository.findById(input.id()).orElseThrow(() -> new NotFoundException("Course Not Found."));
+  public CourseOutputDTO execute(UUID id, UpdateCourseInputDTO input) {
+    Course course = this.repository.findById(id).orElseThrow(() -> new NotFoundException("Course Not Found."));
 
-    this.validateUser(input);
+    this.validateUser(id, input.userId());
     course = this.mapper.update(course, input);
     this.repository.save(course);
 
     return this.mapper.toOutput(course);
   }
 
-  private void validateUser(UpdateCourseInputDTO input) {
-    Optional<UserCourse> userCourse = this.userCourseRepository.findByUserIdAndCourseId(input.userId(), input.id());
+  private void validateUser(UUID id, UUID userId) {
+    Optional<UserCourse> userCourse = this.userCourseRepository.findByUserIdAndCourseId(userId, id);
 
     if (userCourse.isEmpty() || userCourse.get().userType() != UserType.OWNER) throw new BusinessException("Invalid User.");
   }

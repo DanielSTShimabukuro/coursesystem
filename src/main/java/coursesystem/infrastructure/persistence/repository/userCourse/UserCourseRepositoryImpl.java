@@ -5,12 +5,15 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Repository;
+
 import coursesystem.domain.model.usercourse.UserCourse;
 import coursesystem.domain.repository.UserCourseRepository;
 import coursesystem.infrastructure.persistence.mapper.UserCoursePersistenceMapper;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor 
+@Repository 
 public class UserCourseRepositoryImpl implements UserCourseRepository {
   private final UserCoursePersistenceMapper mapper;
   private final UserCourseJpaRepository jpaRepository;

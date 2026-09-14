@@ -8,18 +8,22 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import coursesystem.application.input.course.CreateCourseInputDTO;
+import coursesystem.application.input.course.UpdateCourseInputDTO;
 import coursesystem.application.output.course.CourseOutputDTO;
 import coursesystem.application.usecase.course.CreateCourseUseCase;
 import coursesystem.application.usecase.course.FindAllCoursesUseCase;
 import coursesystem.application.usecase.course.FindCourseByIdUseCase;
+import coursesystem.application.usecase.course.UpdateCourseUseCase;
 import coursesystem.presentation.mapper.CoursePresentationMapper;
 import coursesystem.presentation.request.course.CreateCourseRequestDTO;
+import coursesystem.presentation.request.course.UpdateCourseRequestDTO;
 import coursesystem.presentation.response.course.CourseResponseDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +36,7 @@ public class CourseController {
   private final CreateCourseUseCase createCourseUseCase;
   private final FindAllCoursesUseCase findAllCoursesUseCase;
   private final FindCourseByIdUseCase findByIdCourseUseCase;
+  private final UpdateCourseUseCase updateCourseUseCase;
 
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping 
@@ -52,6 +57,15 @@ public class CourseController {
   @GetMapping("/{id}")
   public CourseResponseDTO findCourseById(@PathVariable UUID id) {
     CourseOutputDTO output = this.findByIdCourseUseCase.execute(id);
+
+    return this.mapper.toResponse(output);
+  }
+
+  @ResponseStatus(HttpStatus.OK)
+  @PutMapping("/{id}")
+  public CourseResponseDTO updateCourse(@PathVariable UUID id, @Valid UpdateCourseRequestDTO request) {
+    UpdateCourseInputDTO input = this.mapper.toInput(request);
+    CourseOutputDTO output = this.updateCourseUseCase.execute(id, input);
 
     return this.mapper.toResponse(output);
   }
