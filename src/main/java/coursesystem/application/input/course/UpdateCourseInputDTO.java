@@ -6,6 +6,7 @@ import java.util.UUID;
 public record UpdateCourseInputDTO(UUID id,
                                     String name,
                                     String description,
-                                    BigDecimal price) {
+                                    BigDecimal price,
+                                    UUID userId) {
   
 }
