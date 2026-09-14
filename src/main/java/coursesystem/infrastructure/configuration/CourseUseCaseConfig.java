@@ -9,6 +9,7 @@ import coursesystem.application.usecase.course.FindAllCoursesUseCase;
 import coursesystem.application.usecase.course.FindCourseByIdUseCase;
 import coursesystem.application.usecase.course.UpdateCourseUseCase;
 import coursesystem.domain.repository.CourseRepository;
+import coursesystem.domain.repository.UserCourseRepository;
 import coursesystem.domain.repository.UserRepository;
 
 @Configuration 
@@ -34,7 +35,7 @@ public class CourseUseCaseConfig {
   }
 
   @Bean 
-  UpdateCourseUseCase updateCourseUseCase(CourseApplicationMapper mapper, CourseRepository repository) {
-    return new UpdateCourseUseCase(mapper, repository);
+  UpdateCourseUseCase updateCourseUseCase(CourseApplicationMapper mapper, UserCourseRepository userCourseRepository, CourseRepository repository) {
+    return new UpdateCourseUseCase(mapper, userCourseRepository, repository);
   }
 }
