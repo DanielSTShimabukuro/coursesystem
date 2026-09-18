@@ -19,6 +19,11 @@ public class UserCourseRepositoryImpl implements UserCourseRepository {
   private final UserCourseJpaRepository jpaRepository;
 
   @Override 
+  public boolean existsByUserIdAndCourseId(UUID userId, UUID CourseId) {
+    return this.jpaRepository.existsByUserIdAndCourseId(userId, CourseId);
+  }
+
+  @Override 
   public Optional<UserCourse> findByUserIdAndCourseId(UUID userId, UUID courseId) {
     return this.jpaRepository.findByUserIdAndCourseId(userId, courseId).map(userCourse -> this.mapper.toDomain(userCourse));
   }
