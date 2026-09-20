@@ -7,6 +7,8 @@ import java.util.UUID;
 import coursesystem.domain.model.usercourse.UserCourse;
 
 public interface UserCourseRepository {
+  UserCourse save(UserCourse userCourse);
+
   boolean existsByUserIdAndCourseId(UUID userId, UUID courseId);
 
   Optional<UserCourse> findByUserIdAndCourseId(UUID userId, UUID courseId);
