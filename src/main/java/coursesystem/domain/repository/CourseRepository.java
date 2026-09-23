@@ -10,6 +10,8 @@ public interface CourseRepository {
   Course save(Course domainCourse, UUID userId);
   Course save(Course domainCourse);
 
+  boolean existsById(UUID id);
+
   Optional<Course> findById(UUID id);
 
   Set<Course> findAll();
