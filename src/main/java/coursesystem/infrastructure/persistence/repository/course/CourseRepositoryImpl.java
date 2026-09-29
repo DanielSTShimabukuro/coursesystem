@@ -41,6 +41,11 @@ public class CourseRepositoryImpl implements CourseRepository {
     return this.mapper.toDomain(course);
   }
 
+  @Override
+  public boolean existsById(UUID id) {
+    return this.jpaRepository.existsById(id);
+  }
+
   @Override 
   public Optional<Course> findById(UUID id) {
     return this.jpaRepository.findById(id).map(course -> this.mapper.toDomain(course));
