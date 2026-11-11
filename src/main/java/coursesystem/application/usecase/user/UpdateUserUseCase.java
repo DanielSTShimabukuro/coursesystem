@@ -25,7 +25,7 @@ public class UpdateUserUseCase {
     this.validateUser(user);
     this.repository.save(user);
 
-    return  this.mapper.toOutput(user);
+    return this.mapper.toOutput(user);
   }
 
   private void validateUser(User user) {
