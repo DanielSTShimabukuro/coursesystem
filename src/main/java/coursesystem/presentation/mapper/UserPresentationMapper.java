@@ -6,11 +6,13 @@ import coursesystem.application.input.user.CreateUserInputDTO;
 import coursesystem.application.input.user.CreditBalanceUserInputDTO;
 import coursesystem.application.input.user.DebitBalanceUserInputDTO;
 import coursesystem.application.input.user.UpdateUserInputDTO;
+import coursesystem.application.output.user.PurchaseCourseOutputDTO;
 import coursesystem.application.output.user.UserOutputDTO;
 import coursesystem.presentation.request.user.CreateUserRequestDTO;
 import coursesystem.presentation.request.user.CreditBalanceUserRequestDTO;
 import coursesystem.presentation.request.user.DebitBalanceUserRequestDTO;
 import coursesystem.presentation.request.user.UpdateUserRequestDTO;
+import coursesystem.presentation.response.user.PurchaseCourseResponseDTO;
 import coursesystem.presentation.response.user.UserResponseDTO;
 
 @Component 
@@ -39,5 +41,9 @@ public class UserPresentationMapper {
                               output.createdAt(),
                               output.updatedAt(),
                               output.userCourseIds());
+  }
+
+  public PurchaseCourseResponseDTO toResponse(PurchaseCourseOutputDTO output) {
+    return new PurchaseCourseResponseDTO(output.id(), output.courseId(), output.type());
   }
 }
