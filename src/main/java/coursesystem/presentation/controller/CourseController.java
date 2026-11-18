@@ -18,6 +18,7 @@ import coursesystem.application.input.course.CreateCourseInputDTO;
 import coursesystem.application.input.course.UpdateCourseInputDTO;
 import coursesystem.application.output.course.CourseOutputDTO;
 import coursesystem.application.usecase.course.CreateCourseUseCase;
+import coursesystem.application.usecase.course.FindAllCoursesByNameUseCase;
 import coursesystem.application.usecase.course.FindAllCoursesUseCase;
 import coursesystem.application.usecase.course.FindCourseByIdUseCase;
 import coursesystem.application.usecase.course.UpdateCourseUseCase;
@@ -37,6 +38,7 @@ public class CourseController {
   private final FindAllCoursesUseCase findAllCoursesUseCase;
   private final FindCourseByIdUseCase findByIdCourseUseCase;
   private final UpdateCourseUseCase updateCourseUseCase;
+  private final FindAllCoursesByNameUseCase findAllCoursesByNameUseCase;
 
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping 
@@ -69,4 +71,11 @@ public class CourseController {
 
     return this.mapper.toResponse(output);
   }
+
+  @ResponseStatus(HttpStatus.OK)
+  @GetMapping("/{name}")
+  public Set<CourseResponseDTO> findAllCoursesByName(@PathVariable String name) {
+    return this.findAllCoursesByNameUseCase.execute(name).stream().map(output -> this.mapper.toResponse(output)).collect(Collectors.toSet());
+  } 
+
 }
