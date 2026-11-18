@@ -52,6 +52,11 @@ public class CourseRepositoryImpl implements CourseRepository {
   }
 
   @Override 
+  public Set<Course> findAllByName(String name) {
+    return this.jpaRepository.findAllByName(name).stream().map(course -> this.mapper.toDomain(course)).collect(Collectors.toSet());
+  }
+
+  @Override 
   public Set<Course> findAll() {
     return this.jpaRepository.findAll().stream().map(course -> this.mapper.toDomain(course)).collect(Collectors.toSet());
   }
