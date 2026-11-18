@@ -5,12 +5,14 @@ import org.springframework.stereotype.Component;
 import coursesystem.application.input.user.CreateUserInputDTO;
 import coursesystem.application.input.user.CreditBalanceUserInputDTO;
 import coursesystem.application.input.user.DebitBalanceUserInputDTO;
+import coursesystem.application.input.user.PurchaseCourseInputDTO;
 import coursesystem.application.input.user.UpdateUserInputDTO;
 import coursesystem.application.output.user.PurchaseCourseOutputDTO;
 import coursesystem.application.output.user.UserOutputDTO;
 import coursesystem.presentation.request.user.CreateUserRequestDTO;
 import coursesystem.presentation.request.user.CreditBalanceUserRequestDTO;
 import coursesystem.presentation.request.user.DebitBalanceUserRequestDTO;
+import coursesystem.presentation.request.user.PurchaseCourseRequestDTO;
 import coursesystem.presentation.request.user.UpdateUserRequestDTO;
 import coursesystem.presentation.response.user.PurchaseCourseResponseDTO;
 import coursesystem.presentation.response.user.UserResponseDTO;
@@ -31,6 +33,10 @@ public class UserPresentationMapper {
 
   public DebitBalanceUserInputDTO toInput(DebitBalanceUserRequestDTO request) {
     return new DebitBalanceUserInputDTO(request.id(), request.amount());
+  }
+
+  public PurchaseCourseInputDTO toInput(PurchaseCourseRequestDTO request) {
+    return new PurchaseCourseInputDTO(request.id(), request.courseId());
   }
 
   public UserResponseDTO toResponse(UserOutputDTO output) {
